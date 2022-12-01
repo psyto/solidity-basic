@@ -14,20 +14,27 @@ contract StructureOfAContract {
      * 値はコントラクト内のストレージ領域に永続的に保存される
      * 状態変数は、Constant(定数)またはImmutable(不変)として宣言することができる（別途解説）
      */
+    uint public data;
+    address public owner;
 
     /** 
      * @dev struct定義
      * 構造体は、複数の変数をグループ化することができるカスタムタイプ
      */
+    struct Account {
+        uint no;
+        address addr;
+    }
 
     // 定義した構造体に名前をつける
-
+    Account public account;
 
     /** 
      * @dev enum定義
      * 列挙型を使用すると、「定数値」セットを持つカスタム型を作成できる
      */
-
+    enum State { Active, Inactive }
+    State public state;
 
     /** 
      * @dev イベント定義
