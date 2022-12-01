@@ -53,7 +53,9 @@ contract StructureOfAContract {
      * @dev constructor定義
      * コントラクトの作成時に実行され、コントラクトの初期化コードを実行することができる
      */
-
+    constructor() {
+        owner = msg.sender;
+    }
 
 
     /** 
