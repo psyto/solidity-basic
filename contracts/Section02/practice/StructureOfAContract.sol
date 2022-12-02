@@ -40,7 +40,7 @@ contract StructureOfAContract {
      * @dev イベント定義
      * EVM(Ethereum Virtual Machine)のロギング機能とのインタフェース
      */
-
+    event SetData(address fromAddr, uint data);
 
     /** 
      * @dev error定義
@@ -82,6 +82,7 @@ contract StructureOfAContract {
     // ファンクション定義 Transaction
     function setData(uint data_) public returns (uint) {
         data = data_;
+        emit SetData(msg.sender, data);
         return data;
     }
 }
