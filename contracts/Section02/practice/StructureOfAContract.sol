@@ -47,7 +47,7 @@ contract StructureOfAContract {
      * 失敗の状況に対して説明的な名前とデータを定義
      * revert 文で使用することができる
      */
-
+    error NotOwner(address owner, address sender);
 
     /** 
      * @dev constructor定義
@@ -62,7 +62,12 @@ contract StructureOfAContract {
      * @dev Functon Modifier定義
      * 宣言的な方法でファンクションのセマンティクス（意味づけ）を修正するために使用する
      */
-
+    modifier onlyOwner() {
+        if (owner != msg.sender) {
+            revert NotOwner(owner, msg.sender);
+        }
+        _;
+    }
 
     /** 
      * @dev Function定義
@@ -80,7 +85,7 @@ contract StructureOfAContract {
     }
 
     // ファンクション定義 Transaction
-    function setData(uint data_) public returns (uint) {
+    function setData(uint data_) public onlyOwner returns (uint) {
         data = data_;
         emit SetData(msg.sender, data);
         return data;
