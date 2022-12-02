@@ -75,8 +75,13 @@ contract StructureOfAContract {
      *                ガス代としてEtherを消費する
      */
     // ファンクション定義 Call
- 
+    function getData() public view returns (uint) {
+        return data;
+    }
 
     // ファンクション定義 Transaction
-
+    function setData(uint data_) public returns (uint) {
+        data = data_;
+        return data;
+    }
 }
