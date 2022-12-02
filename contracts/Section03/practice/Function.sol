@@ -29,7 +29,13 @@ contract Function {
      * @dev ファンクション型のメンバーメソッド(.address)を返す
      * .address : 指定のファンクションが属するコントラクトのアドレスを取得
      */
+    function viewF() public view returns (address) {
+        return this.viewF.address;
+    }
 
+    function pureF(uint a, uint b) public pure returns (uint) {
+        return (a + b);
+    }
 
     /// @dev Function return variables（関数の戻り値変数）を利用した複数return
 
