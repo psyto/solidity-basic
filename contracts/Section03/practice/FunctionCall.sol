@@ -12,17 +12,43 @@ pragma solidity ^0.8.17;
  */
 contract FunctionCall {
     /// @dev Publicファンクションは外部からCallできる
+    function pub1(uint a, uint b) public pure returns (uint) {
+        return _itl1(a, b);
+    }
 
     /// @dev Internalファンクションは外部からはCallできない。内部からのみCallできる
+    function _itl1(uint a, uint b) internal pure returns (uint) {
+        return (a + b);
+    }
 
     /// @dev External Function Call
+    function ext1(uint a, uint b) external pure returns (uint) {
+        return (a + b);
+    }
 
     /// @dev PublicファンクションからPrivateファンクションをCallできる
+    function pub2(uint a, uint b) public pure returns (uint) {
+        return _pri2(a, b);
+    }
+
+    function pub3(uint a, uint b) public pure returns (uint) {
+        return (a * b);
+    }
 
     /// @dev PrivateファンクションからPublicファンクションをCallできる
+    function _pri2(uint a, uint b) private pure returns (uint) {
+        return pub3(a, b);
+    }
 
     /// @dev ExternalファンクションはInternalファンクションからCallできない
+    function _itl3(uint a, uint b) internal view returns (uint) {
+        // return ext1(a, b);
+        return this.ext1(a, b);
+    }
 
+    function pub4(uint a, uint b) public view returns (uint) {
+        return _itl3(a, b);
+    }
 
     /// @dev 引数の指定
 
