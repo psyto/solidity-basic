@@ -11,14 +11,21 @@ contract Integers {
     * int8〜int256/uint8〜uint256まで8単位
     * uintとintは、それぞれuint256とint256のエイリアス
     */
+   int public i = 10;
+   uint public u = 10;
 
+   int256 public i256 = 10;
+   uint256 public u256 = 10;
 
     /** @dev 8bit 上限値下限値確認
      *   int8 : -128 〜 127 / 10000000 - 01111111
      *  uint8 : 0    〜 255 / 00000000 - 11111111
      * https://note.cman.jp/convert/bit/
      */
-
+   int8 i8 = 127;
+   int8 im8 = -128;
+   uint8 u8 = 255;
+   uint8 um8 = 0;
 
     /// @dev 比較演算子
     // 以下
