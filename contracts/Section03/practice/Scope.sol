@@ -34,10 +34,16 @@ contract Scope {
         return a;
     }
     function blockScope3() pure public returns (uint) {
+        uint a;
+        {
             // Compileエラー。下位ブロックで上位定義済みのaを再定義できない
 
             // uint a
             // aに代入
+            a = 10;
+        }
+        
+        return a;
 
     }
 
