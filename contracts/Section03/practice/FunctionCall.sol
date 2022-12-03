@@ -51,7 +51,13 @@ contract FunctionCall {
     }
 
     /// @dev 引数の指定
+    function _itl4(uint a, uint b) internal pure returns (uint) {
+        return (a ** b);
+    }
 
     //未使用の仮引数は名前を省略できる
+    function pub5(uint a_, uint b_, uint) public pure returns (uint) {
+        return _itl4({b: b_, a: a_});
+    }
 
 }
