@@ -76,34 +76,47 @@ contract Integers {
 
    /// @dev シフト演算
    // 左シフト
-   // 1000 -> 10000    
+   // 00001000 -> 00010000
+   int8 public ilshift = (8 << 1);    
 
    // 右シフト
-   /// 1000 -> 100    
-
+   /// 00001000 -> 00000100    
+   int8 public irshift = (8 >> 1);
 
    /// @dev 算術演算子
+   int8 a = 8;
+   int8 b = 6;
 
    // 足し算
+   int8 public iadd = a + b;
 
    // 引き算
+   int8 public isub = a - b;
 
    // 掛け算
+   int8 public imul = a * b;
 
    // 割り算
+   int8 public idiv = a / b;
 
    // 剰余 : aをbで割った余り
+   int8 public imod = a % b;
 
    // べき乗
-
+   int256 ipow = 2 ** 10;
 
    /// @dev 数値リテラル
+   int256 imillion = 1_000_000;
 
    // 計算過程では小数が使える
+   int256 public c = 3.2 + 1.8 + 4;
 
    /// @dev 小数は扱えない(結果が整数なら扱える)
-
+   int256 public e = .2 * 5;
 
    /// @dev 三項演算子
+   function ternary(int8 t) external pure returns (int8) {
+      return (0 < t? int8(t) : int8(-1));
+   }
 
 }
