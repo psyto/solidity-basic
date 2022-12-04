@@ -9,13 +9,30 @@ contract Address {
 
 
     /// @dev msg.senderはクエリ/トランザクション元アカウントアドレスが入っているグローバル変数
+    address public fromAddr;
 
+    constructor() {
+        fromAddr = msg.sender;
+    }
 
     /// @dev アカウントアドレス(EOA)の所有ETHを取得
+    function getBalance() public view returns (uint256) {
+        uint256 balance = fromAddr.balance;
+        return balance;
+    }
 
     /// @dev コントラクトのバイトコードを取得
+    function getByteCode() public view returns (bytes memory) {
+        return address(this).code;
+    }
 
     /// @dev コントラクトのバイトコードハッシュを取得
+    function getByteCodeHash() public view returns (bytes32) {
+        return address(this).codehash;
+    }
+    function getByteCodeHash2() public view returns (bytes32) {
+        return keccak256(address(this).code);
+    }
 
     /** 
      * @dev ETH送金 transfer/send/callの違い
