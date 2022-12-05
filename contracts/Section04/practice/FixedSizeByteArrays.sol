@@ -41,8 +41,13 @@ contract FixedSizeByteArrays {
     bytes1 public brshift = (a >> 1);
 
     // @dev インデックスアクセス
-
+    // c = 0xb5d2
+    bytes1 public idx1 = c[0]; // 0xb5
+    bytes1 public idx2 = c[1]; // 0xd2
 
     // @dev メンバーファンクション
-
+    bytes4 hoge = 0x484F474F;
+    function getLength() public view returns (uint) {
+        return hoge.length;
+    }
 }
