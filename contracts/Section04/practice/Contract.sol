@@ -46,6 +46,10 @@ contract Contract {
     }
 
     /// @dev コントラクト型（MyContract c）のローカル変数を定義し、Addressコントラクトのファンクションを実行
+    function callAddressFunction(Address _addr) public view returns (uint256) {
+        Address addrContract = Address(_addr);
+        return addrContract.getBalance();
+    }
     
     /// @dev コントラクトのインスタンス化
     // 別途改めて扱う
