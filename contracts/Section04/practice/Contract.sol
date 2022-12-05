@@ -14,20 +14,31 @@ contract Contract {
     constructor() payable {}
 
     /// @dev Addressコントラクトの型情報(type)から名前を取得
+    function getAddressName() public pure returns (string memory) {
+        return type(Address).name;
+    }
 
     /** 
      * @dev Addressコントラクトの型情報(type)から作成コードを取得
      * creationCodeはスマートコントラクトのコンストラクタロジックとコンストラクタパラメータを含む
      */
-
+    function getAddressCreationCode() public pure returns (bytes memory) {
+        return type(Address).creationCode;
+    }
 
     /** 
      * @dev Addressコントラクトの型情報(type)からランタイムコードを取得
      * runtimeCodeはオンチェーンに保存されるコード
      * このコードには、コントラクトのコンストラクタ・ロジックやコンストラクタ・パラメータは含まれない
      */
+    function getAddressRuntimeCode() public pure returns (bytes memory) {
+        return type(Address).runtimeCode;
+    }
 
     /// @dev thisは現コントラクト(Contract)を意味する
+    function getContractAddress() public view returns (address) {
+        return address(this);
+    }
 
     /// @dev 現コントラクトを破棄し、その資金を与えられたアドレスに送る。本当に削除されるのはトランザクション終了時。
 
