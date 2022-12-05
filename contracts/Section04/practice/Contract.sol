@@ -53,7 +53,10 @@ contract Contract {
     
     /// @dev コントラクトのインスタンス化
     // 別途改めて扱う
- 
+    function callIAddressFunction() public returns (uint256) {
+        Address addrContract = new Address("Saito");
+        return addrContract.getBalance();
+    }
 }
 
 /** 
