@@ -41,6 +41,9 @@ contract Contract {
     }
 
     /// @dev 現コントラクトを破棄し、その資金を与えられたアドレスに送る。本当に削除されるのはトランザクション終了時。
+    function destruct() public {
+        selfdestruct(payable(msg.sender));
+    }
 
     /// @dev コントラクト型（MyContract c）のローカル変数を定義し、Addressコントラクトのファンクションを実行
     
