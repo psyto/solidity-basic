@@ -26,8 +26,12 @@ contract Enums {
     }
 
     /// @dev 最初のステータスを返す
-
+    function getSmallestStatus() external pure returns (TaskStatus) {
+        return type(TaskStatus).min;
+    }
 
     /// @dev 最後のステータスを返す
-
+    function getLargestStatus() external pure returns (TaskStatus) {
+        return type(TaskStatus).max;
+    }
 }
