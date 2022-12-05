@@ -11,7 +11,7 @@ pragma solidity ^0.8.17;
  */
 contract Contract {
     /// @dev constructorやfunctionにpayableを付与、宣言すると、コントラクトはETHを受け取れるようになる
-
+    constructor() payable {}
 
     /// @dev Addressコントラクトの型情報(type)から名前を取得
 
