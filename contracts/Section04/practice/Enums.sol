@@ -10,16 +10,20 @@ pragma solidity ^0.8.17;
  */
 contract Enums {
     /// @dev 列挙型でタスクステータスを定義
-
+    enum TaskStatus { NotStarted, InProcess, Finished, Canceled }
 
     /// @dev TaskStatusの変数(status)を定義
-
+    TaskStatus status;
 
     /// @dev 引数で受け取った値を設定する
-
+    function setStatus(TaskStatus choice) external {
+        status = choice;
+    }
 
     /// @dev 現ステータスを返す(uintに変換できる)
-
+    function getStatus() external view returns (uint) {
+        return uint(status);
+    }
 
     /// @dev 最初のステータスを返す
 
