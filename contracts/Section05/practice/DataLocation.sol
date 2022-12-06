@@ -52,4 +52,11 @@ contract DataLocation {
         characters.push(character);
     }
 
+    function setC() public returns (string memory) {
+        // storage => local storage : 値への参照のコピーを渡す
+        // ※local storage : 関数内で定義された変数のこと
+        string storage d = c;
+        c = "222";
+        return d;
+    }
 }
