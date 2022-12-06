@@ -42,4 +42,14 @@ contract DataLocation {
         return a;
     }
 
+    function addCharacter(string memory name_, uint level_) public {
+        // memory <=> memory : 値への参照のコピーを渡す
+        Character memory character = Character(name_, level_);
+        Character memory characterChanged = character;
+        characterChanged.name = "aaa";
+
+        // push to state variable
+        characters.push(character);
+    }
+
 }
