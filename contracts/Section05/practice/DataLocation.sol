@@ -23,5 +23,23 @@ pragma solidity ^0.8.17;
 contract DataLocation {
 
     // 状態変数はstorage
+    struct Character {
+        string name;
+        uint level;
+    }
+    Character[] public characters;
+
+    string public a;
+    string public b;
+    string public c = "ccc";
+
+    function setA() public view returns (string memory) {
+        // storage, <=> memory,calldata : 値そのもののコピーを渡す
+        string memory aa = a;
+        // as aa and a are indepedent, the below does not change a.
+        aa = "hoge";
+        // the below returns a default value, which is zero.
+        return a;
+    }
 
 }
