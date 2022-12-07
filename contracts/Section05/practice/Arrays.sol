@@ -82,6 +82,8 @@ contract Arrays {
     }
     
     /// @dev 配列スライス 引数例([1,2,3,4,5], 2)
-
+    function getArraySlice(uint[] calldata array, uint index) external pure returns (uint[] memory, uint[] memory) {
+        return (array[:index], array[index:]);
+    }
 
 }
