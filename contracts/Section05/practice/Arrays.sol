@@ -38,7 +38,9 @@ contract Arrays {
     }
 
     // 配列全体の取得
-
+    function getArray() public view returns (uint[2] memory) {
+        return array1;
+    }
     
     // メンバーメソッド
 
