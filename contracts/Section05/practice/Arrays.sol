@@ -15,14 +15,18 @@ contract Arrays {
     /// @dev int/uint array
     // 配列定義
     // 固定長
+    uint[2] public array1 = [1, 2];
 
     // 配列要素は定義した型の要素が必要。以下は定義不可(-1はuintの範囲外)
     // uint[2] public arrayNG = [1, -1];
     // 1はuintXだと見なされるのでintに変換する必要がある
+    int[2] public arrayConvertd = [int(1), -1];
 
     /// 可変長
+    uint[] public array2 = [1, 2];
 
     // 二次元配列
+    uint[2][3] public array3 = [[1,2],[3,4],[5,6]];
 
     // 配列要素の取り出し方
 
