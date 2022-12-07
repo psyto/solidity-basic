@@ -64,7 +64,22 @@ contract Arrays {
      * ストレージ配列とは異なり、メモリ配列のサイズを変更できない(例.push,.popは使用できない)
      * 必要なサイズをあらかじめ計算しておくか、新しいメモリ配列を作成して各要素をコピーする必要がある
      */
+    function createDynamicMemoryArray() public pure returns (uint[] memory, uint[] memory) {
+        uint[] memory a = new uint[](4);
+        a[0] = 10;
+        a[1] = 11;
+        a[2] = 12;
+        a[3] = 13;
 
+        uint[] memory b = new uint[](5);
+        b[0] = a[0];
+        b[1] = a[1];
+        b[2] = a[2];
+        b[3] = a[3];
+        b[4] = 14;
+
+        return (a, b);
+    }
     
     /// @dev 配列スライス 引数例([1,2,3,4,5], 2)
 
