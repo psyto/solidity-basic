@@ -29,10 +29,13 @@ contract Arrays {
     uint[2][3] public array3 = [[1,2],[3,4],[5,6]];
 
     // 配列要素の取り出し方
-
+    uint[2] public fa3 = array3[0];
+    uint[2] public f = [fa3[1], fa3[0]];
 
     // 配列要素の変更
-
+    function changeArray1(uint index, uint num) public {
+        array1[index] = num;
+    }
 
     // 配列全体の取得
 
