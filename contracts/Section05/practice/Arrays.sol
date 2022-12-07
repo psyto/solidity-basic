@@ -43,14 +43,21 @@ contract Arrays {
     }
     
     // メンバーメソッド
+    function length() public view returns (uint) {
+        return array2.length;
+    }
 
+    function push(uint num) public {
         // array1は固定長なので定義した要素数を超えてpushできない
         // array1.push(num);
         // array2は可変長なのでpushできる
+        array2.push(num);
+    }
 
+    function pop() public {
         // array2の最後の要素を取り出す
-
-
+        array2.pop();
+    }
 
     /**
      * @dev 動的な長さを持つメモリ配列は、new演算子で作成することができる
