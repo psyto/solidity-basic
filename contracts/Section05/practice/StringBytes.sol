@@ -76,6 +76,15 @@ contract StringBytes {
 
     /// @dev String/Bytes型配列操作
     // 文字列の一部変更
+    function changeString(string memory s1_) 
+        external pure returns (string memory) {
+            // convert to bytes
+            bytes memory b3 = bytes(s1_);
+            // change 2nd byte to "a"
+            b3[1] = "a";
+            // cast to string and return
+            return string(b3);
+        }
 
     // 文字列を大文字に変換
 
