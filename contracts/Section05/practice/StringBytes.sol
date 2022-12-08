@@ -87,7 +87,16 @@ contract StringBytes {
         }
 
     // 文字列を大文字に変換
-
+    function toUpperCase(string memory s1_) 
+        external pure returns (string memory) {
+            bytes memory b3 = bytes(s1_);
+            for (uint i; i < b3.length; i++) {
+                if (b3[i] >= 0x61 && b3[i] <= 0x7A) {
+                    b3[i] = bytes1(uint8(b3[i]) - 32);
+                }
+            }
+            return string(b3);
+        }
 
     // 配列スライス
 
