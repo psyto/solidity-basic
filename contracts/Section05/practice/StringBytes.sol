@@ -35,8 +35,14 @@ contract StringBytes {
 
     /// @dev 16進数リテラル
     // Unicode URT-8に変換
+    string public hexdecimal = hex"686f6765";
 
     /// @dev エスケープ文字\
+    string public singleQuote = '\'';
+    string public doubleQuote = "\"";
+    string public backSlash = "\\";
+    string public newline = "ho\nge";
+    string public tabline = "ho\tge";
 
     /// @dev Solidityにおける文字列比較
 
