@@ -99,6 +99,10 @@ contract StringBytes {
         }
 
     // 配列スライス
+    function slice(bytes calldata byteString) 
+        external pure returns (bytes memory) {
+            return byteString[:4];
+        }
 
     // 固定長バイトの場合はValueTypeになるので、Data Locationの指定は不要
 }
