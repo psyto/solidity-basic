@@ -53,11 +53,26 @@ contract StringBytes {
     /// @dev String/Bytes型のメンバーメソッド
     // Solidityにおける結合
     // String結合
+    function stringConcat() external view returns (string memory) {
+        return string.concat(japaneseWords, emoji);
+    }
 
     // Bytes結合
+    bytes b1 = "Solidity";
+    bytes b2 = "Programming";
+    function bytesConcat() external view returns (bytes memory) {
+        return bytes.concat(b1, b2);
+    }
 
     // 文字列長の取得
+    string s1 = "hello";
+    function stringLength() external view returns (uint) {
+        return bytes(s1).length;
+    }
 
+    function bytesLength() external view returns (uint) {
+        return b1.length;
+    }
 
     /// @dev String/Bytes型配列操作
     // 文字列の一部変更
