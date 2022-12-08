@@ -19,12 +19,15 @@ contract StringBytes {
     // 状態変数定義の際にはData Location(storage|memory|calldata)の指定は不要
 
     /// @dev String(文字列)リテラルはダブルクォートまたはシングルクォートで記述する
+    string public hoge = "hoge";
 
     //  長い文字列を扱うときに便利なように、連続した複数の部分に分割することもできる
+    string public hogehoge = "hoge" "hoge";
 
     /// @dev Unicode変換できる
     // Unicode一覧
     //   https://ja.wikipedia.org/wiki/Unicode%E4%B8%80%E8%A6%A7_0000-0FFF
+    bytes public hogeBytes = "hoge";
 
     /// @dev Unicode UTF-8
     
