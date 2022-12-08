@@ -30,7 +30,8 @@ contract StringBytes {
     bytes public hogeBytes = "hoge";
 
     /// @dev Unicode UTF-8
-    
+    string public japaneseWords = unicode"こんにちは";
+    string public emoji = unicode"✋";
 
     /// @dev 16進数リテラル
     // Unicode URT-8に変換
