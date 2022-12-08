@@ -45,6 +45,10 @@ contract StringBytes {
     string public tabline = "ho\tge";
 
     /// @dev Solidityにおける文字列比較
+    function compareString(string memory s1_, string memory s2_)
+        external pure returns (bool) {
+            return (keccak256(bytes(s1_)) == keccak256(bytes(s2_)));
+        }
 
     /// @dev String/Bytes型のメンバーメソッド
     // Solidityにおける結合
