@@ -18,4 +18,12 @@ contract Structs {
     Account public account = Account(1, 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4);
     // Account public account = Account({addr:0x5B38Da6a701c568545dCfcB03FcB875f56beddC4, no:1});
 
+    function getAccount() external view returns (uint) {
+        return account.no;
+    }
+
+    function setAccount() external {
+        account.addr = msg.sender;
+    }
+
 }
