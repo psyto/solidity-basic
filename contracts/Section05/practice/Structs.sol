@@ -35,4 +35,17 @@ contract Structs {
         account.addr = msg.sender;
     }
 
+    function memberPush(address addr_, string calldata name_, uint amount_) external {
+        Member memory mem = Member({
+            addr: addr_,
+            name: name_,
+            amount: amount_
+        });
+        members.push(mem);
+    }
+
+    function getMember(uint idx) external view returns (Member memory) {
+        return members[idx];
+    }
+
 }
