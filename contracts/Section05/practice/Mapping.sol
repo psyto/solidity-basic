@@ -31,4 +31,19 @@ contract Mapping {
         id++;
     }
 
+    function getMemberProfile(uint id_) public view returns (Profile memory) {
+        return memberProfile[id_][msg.sender];
+    }
+
+    function setMemberProfile(uint id_, string memory name_, uint level_) 
+        public {
+            require(member[id_] == msg.sender);
+            memberProfile[id_][msg.sender] = Profile(
+                {
+                    name: name_,
+                    level: level_
+                }
+            );
+        }
+
 }
