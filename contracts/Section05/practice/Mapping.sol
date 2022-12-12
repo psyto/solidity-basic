@@ -26,4 +26,9 @@ contract Mapping {
     // Mapping型の_valueTypeにMapping型も指定可能
     mapping(uint => mapping(address => Profile)) memberProfile;
 
+    function addMember() public {
+        member[id] = msg.sender;
+        id++;
+    }
+
 }
