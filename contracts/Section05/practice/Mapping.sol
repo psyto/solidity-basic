@@ -14,9 +14,16 @@ contract Mapping {
      * ValueTypeは、マッピング、配列、構造体を含む任意の型にすることができます。
      */
 
-
+    uint id;
     // Mapping型定義
+    mapping(uint => address) public member;
+
+    struct Profile {
+        string name;
+        uint level;
+    }
     
     // Mapping型の_valueTypeにMapping型も指定可能
+    mapping(uint => mapping(address => Profile)) memberProfile;
 
 }
