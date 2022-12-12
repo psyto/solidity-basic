@@ -46,4 +46,9 @@ contract Mapping {
             );
         }
 
+    function delMemberProfile(uint id_) public {
+        require(member[id_] == msg.sender);
+        delete memberProfile[id_][msg.sender];
+    }
+
 }
