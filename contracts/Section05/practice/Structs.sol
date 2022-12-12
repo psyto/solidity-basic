@@ -48,4 +48,12 @@ contract Structs {
         return members[idx];
     }
 
+    function changeName(uint idx, string calldata newName) external {
+        members[idx].name = newName;
+    }
+
+    function getName(uint idx) external view returns (string memory) {
+        return members[idx].name;
+    } 
+
 }
