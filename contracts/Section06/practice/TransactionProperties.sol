@@ -26,6 +26,9 @@ contract TransactionProperties {
     *  A(EOA)->B(CA)->C(CA)の順番でCallするとき、Cの内部では msg.senderはBになる。tx.originはトランザクションの発行元なのでAになる。
     */
   // msg.sender：ファンクションを発行したアドレス（EOA/ContractAddress）
+  function getSender() external view returns (address) {
+    return msg.sender;
+  }
 
   // tx.origin：トランザクション発行アドレス(EOA)
   // 以下のようにアクセス制限に使う場合は非推奨（よく理解して使わないとバグに繋がる）
@@ -38,6 +41,9 @@ contract TransactionProperties {
   //   〜何かしらの処理〜
   // }
   // 
+  function getOrigin() external view returns (address) {
+    return tx.origin;
+  }
 }
 
 contract B {
