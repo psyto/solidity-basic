@@ -13,7 +13,9 @@ pragma solidity ^0.8.17;
 contract TransactionProperties {
   // msg.data: トランザクションデータ
   // msg.sig: トランザクションデータの最初の4バイト
-
+  function getData(uint a_) external pure returns (uint, bytes calldata, bytes4) {
+    return (a_, msg.data, msg.sig);
+  }
 
   // トランザクションValue
 
