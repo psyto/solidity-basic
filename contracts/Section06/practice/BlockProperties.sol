@@ -13,11 +13,22 @@ pragma solidity ^0.8.17;
  */
 contract BlockProperties {
     // チェーンID
+    function getChainId() external view returns (uint) {
+        return block.chainid;
+    }
 
     // ブロックナンバー
+    function getBlockNumber() external view returns (uint) {
+        return block.number;
+    }
 
     // ブロックハッシュ
+    function getBlockHash(uint blockNum_) external view returns (bytes32) {
+        return blockhash(blockNum_);
+    }
 
     // ブロックタイムスタンプ UNIXエポック（1970/1/1 00:00:00）からの秒数
-
+    function getTimeStamp() external view returns (uint) {
+        return block.timestamp;
+    }
 }
