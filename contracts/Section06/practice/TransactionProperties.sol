@@ -18,7 +18,9 @@ contract TransactionProperties {
   }
 
   // トランザクションValue
-
+  function getValue() external payable returns (uint) {
+    return msg.value;
+  }
   
   /** @dev msg.senderとtx.originの違い
     *  A(EOA)->B(CA)->C(CA)の順番でCallするとき、Cの内部では msg.senderはBになる。tx.originはトランザクションの発行元なのでAになる。
