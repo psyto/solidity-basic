@@ -26,8 +26,10 @@ contract TransactionProperties {
     *  A(EOA)->B(CA)->C(CA)の順番でCallするとき、Cの内部では msg.senderはBになる。tx.originはトランザクションの発行元なのでAになる。
     */
   // msg.sender：ファンクションを発行したアドレス（EOA/ContractAddress）
-  function getSender() external view returns (address) {
-    return msg.sender;
+  function getSender() external returns (address, address) {
+    // return msg.sender;
+    B contractB = new B();
+    return (contractB.bGetSender());  
   }
 
   // tx.origin：トランザクション発行アドレス(EOA)
@@ -41,13 +43,22 @@ contract TransactionProperties {
   //   〜何かしらの処理〜
   // }
   // 
-  function getOrigin() external view returns (address) {
-    return tx.origin;
+  function getOrigin() external returns (address, address) {
+    // return tx.origin;
+    B contractB = new B();
+    return (contractB.bGetOrigin());  
   }
 }
 
 contract B {
-
+  function bGetSender() public returns (address, address) {
+    C contractC = new C();
+    return (contractC.cGetSender(), address(this));
+  }
+  function bGetOrigin() public returns (address, address) {
+    C contractC = new C();
+    return (contractC.cGetOrigin(), address(this));
+  }
 }
 
 contract C {
@@ -55,7 +66,13 @@ contract C {
     *  A(EOA)->B(CA)->C(CA)の順番でCallするとき、Cの内部では msg.senderはBになる。tx.originはトランザクションの発行元なのでAになる。
     */
   // msg.sender：ファンクションを発行したアドレス（EOA/ContractAddress）
+  function cGetSender() public view returns (address) {
+    return msg.sender;
+  }
 
   // tx.origin：トランザクション発行アドレス(EOA)
+  function cGetOrigin() public view returns (address) {
+    return tx.origin;
+  }
 
 }
