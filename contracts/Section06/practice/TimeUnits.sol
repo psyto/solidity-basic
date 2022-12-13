@@ -27,4 +27,19 @@ contract TimeUnits {
         assert(1 weeks == 7 days);
         return true;
     }
+    function add1Seconds(uint seconds_) external pure returns (uint) {
+        return (seconds_ + 1 seconds);
+    }
+    function add1Minutes(uint seconds_) external pure returns (uint) {
+        return (seconds_ + 1 minutes);
+    }
+    function add1Hours(uint seconds_) external pure returns (uint) {
+        return (seconds_ + 1 hours);
+    }
+    function add1Days(uint seconds_) external pure returns (uint) {
+        return (seconds_ + 1 days);
+    }
+    function add1Weeks(uint seconds_) external pure returns (uint) {
+        return (seconds_ + 1 weeks);
+    }
 }
