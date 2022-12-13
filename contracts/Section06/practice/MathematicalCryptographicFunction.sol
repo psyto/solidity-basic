@@ -8,8 +8,14 @@ pragma solidity ^0.8.17;
 
 contract MathematicalCryptographicFunction {
     // (x + y) % k
+    function addMod(uint x_, uint y_, uint k_) external pure returns (uint) {
+        return addmod(x_, y_, k_);
+    }
 
     // (x * y) % k
+    function mulMod(uint x_, uint y_, uint k_) external pure returns (uint) {
+        return mulmod(x_, y_, k_);
+    }
 
     /**
      * @dev Solidityでは、ハッシュ関数はまずデータの入力がエンコードされている必要がある
