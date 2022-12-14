@@ -21,6 +21,18 @@ contract While {
     }
 
     /// @dev breakでloopを抜ける
+    function breakLoop() external returns (uint[] memory) {
+        i = 0;
+        delete array;
+        while (i < 10) {
+            i++;
+            if (i % 3 == 0) {
+                break;
+            }
+            array.push(i);
+        }
+        return array;        
+    }
 
     /// @dev continueは次のloop処理に進む
 
