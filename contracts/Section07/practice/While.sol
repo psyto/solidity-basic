@@ -35,6 +35,18 @@ contract While {
     }
 
     /// @dev continueは次のloop処理に進む
+    function continueLoop() external returns (uint[] memory) {
+        i = 0;
+        delete array;
+        while (i < 10) {
+            i++;
+            if (i % 3 == 0) {
+                continue;
+            }
+            array.push(i);
+        }
+        return array;        
+    }
 
     function getArray() external view returns (uint[] memory) {
         return array;
