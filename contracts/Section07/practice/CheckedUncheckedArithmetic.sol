@@ -22,12 +22,15 @@ contract CheckedUncheckedArithmetic {
     }
 
     // a:1, b:255
-
+    function uncheckedOverflow(uint8 a, uint8 b) external pure returns (uint8) {
         // チェックを無効化する オーバーフロー
+        unchecked { return a + b; }
+    }
 
     // a:1, b:2
-
+    function uncheckedUnderflow(uint8 a, uint8 b) external pure returns (uint8) {
         // チェックを無効化する アンダーフロー
-
+        unchecked { return a - b; }
+    }
 
 }
