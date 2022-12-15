@@ -72,6 +72,11 @@ contract AssertRequireRevert {
  　　   * 外部コントラクトの呼び出しによる入力や戻り値に対する条件チェックにも使うことがある
      * 例外処理実行までに消費したガスは戻ってこないが、未消費のガスは戻る。
     　　*/
+    function requireF(uint n) external pure returns (uint) {
+        require( n <= 10 , "out of range over 10");
+        uint power = n**2;
+        return power;
+    }
 
     /** 
      * @dev revert()はError(string)型のエラーを発生させる
