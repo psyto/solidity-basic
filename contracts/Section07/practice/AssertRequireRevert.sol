@@ -58,7 +58,13 @@ contract AssertRequireRevert {
      * 0x51 : 内部関数型のゼロ初期化変数を呼び出した場合
      */
 
+    uint public price = 1000;
 
+    function assertF() external {
+        for (uint i = 0; i < 100; i++) {
+            price = i;
+        }
+    }
 
     /**
 　　    * @dev requireは、データを持たずにエラーを発生させるか、Error(string)型のエラーを発生させるかのどちらか。
