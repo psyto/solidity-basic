@@ -20,16 +20,6 @@ pragma solidity ^0.8.17;
  *  - Panic(uint256)型のエラーを生成を発生させる : Assert
  */
 
-/**
- * @dev
- *  errorステートメントでエラー定義が可能。継承できるが、オーバーライドやオーバーロードは不可。
- *  このコメントにエラー理由を記述できる。
- *  このコメントはBlockchainに記録されないので、安価なエラー報告機能として活用できるメリットがある
- *  
- *  
- */
-
-
 contract AssertRequireRevert {
     /**
 　　    * @dev assertは、Panic(uint256)型のエラーを生成
@@ -60,6 +50,16 @@ contract AssertRequireRevert {
 
     uint public price = 1000;
 
+    /**
+    * @dev
+    *  errorステートメントでエラー定義が可能。継承できるが、オーバーライドやオーバーロードは不可。
+    *  このコメントにエラー理由を記述できる。
+    *  このコメントはBlockchainに記録されないので、安価なエラー報告機能として活用できるメリットがある
+    *  @param a_ number to be divided
+    *  @param b_ divisor
+    */
+    error DivError(uint a_, uint b_);
+
     function assertF() external {
         for (uint i = 0; i < 100; i++) {
             price = i;
@@ -83,13 +83,25 @@ contract AssertRequireRevert {
      * revertステートメントとrevertファンクションを使用して、直接revertをトリガーできる
      * 例外処理実行までに消費したガスは戻ってこないが、未消費のガスは戻る。
      */ 
-     
+     function revertF(uint a, uint b) external pure returns (uint, uint, uint) {
+         if (b == 0) {
             // revertファンクション
             // a:1, b:0
-
+            revert("enter a number greater than 0");
+         } else if (a == 0) {
             // revertステートメント。errorステートメントとセット
             // a:0, b:1
-
+            revert DivError(a, b);
+         } else {
             // a:10, b:2
+            return (a, b, a/b);
+         }
+     }
+     
+
+
+
+
+
 
 }
