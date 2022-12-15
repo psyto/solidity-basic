@@ -10,12 +10,16 @@ pragma solidity ^0.8.17;
  */
 contract CheckedUncheckedArithmetic {
     // a:1, b:255
-
+    function checkedOverflow(uint8 a, uint8 b) external pure returns (uint8) {
         // 加算結果が255を超えるとuint8型の範囲を超えるためオーバーフローとなりrevertされる
+        return a + b;
+    }
 
     // a:1, b:2
-
+    function checkedUnderflow(uint8 a, uint8 b) external pure returns (uint8) {
         // 減算結果が0未満となるとuint8型の範囲を超えるためアンダーフローとなりrevertされる
+        return a - b;
+    }
 
     // a:1, b:255
 
