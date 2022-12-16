@@ -76,9 +76,17 @@ contract Visibility is contractA {
     // }
 
     // publicな状態変数は継承先でもアクセスできる
+    function returnPublicVariable() public view returns (string memory) {
+        return publicVariable;
+    }
 
     // internalな状態変数は継承先でもアクセスできる
+    function returnInternalVariable() public view returns (string memory) {
+        return internalVariable;
+    }
 
     // privateな状態変数は継承先ではアクセスできない
-
+    // function returnPrivateVariable() public view returns (string memory) {
+    //     return privateVariable;
+    // }
 }
