@@ -34,12 +34,24 @@ contract CreatingContract {
             conA = new ContractA(name_, symbol_);
             return conA;
         }
-    /// @dev ContractAのGetterファンクションを実行
 
     /// @dev ContractAのGetterファンクションを実行
+    function getName() external view returns (string memory) {
+        return conA.name();
+    }
 
     /// @dev ContractAのGetterファンクションを実行
+    function getSymbol() external view returns (string memory) {
+        return conA.symbol();
+    }
+
+    /// @dev ContractAのGetterファンクションを実行
+    function getOwner() external view returns (address) {
+        return conA.owner();
+    }
 
     /// @dev ContractAにトランザクション発行
-
+    function callChangeNameF(string memory newName) external returns (string memory) {
+        return conA.changeName(newName);
+    }
 }
