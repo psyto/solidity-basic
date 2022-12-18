@@ -13,6 +13,7 @@ contract GetterFunction {
     uint public num = 8;
 
     // Getterファンクションでは要素を指定して値を取得することになる
+    uint[] public array = [1,2,3,4,5];
 
     // コントラクト内からのアクセスとコントラクト外からのアクセス方法
     function access(uint newNum) public returns (uint) {
@@ -23,7 +24,9 @@ contract GetterFunction {
     }
 
     // 全要素を返したい場合は、Getterファンクションではなく明示的にファンクション作成すれば返せる
-
+    function getArray() public view returns (uint[] memory) {
+        return array;
+    }
 }
 
 contract A {
