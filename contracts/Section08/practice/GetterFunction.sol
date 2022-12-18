@@ -15,13 +15,20 @@ contract GetterFunction {
     // Getterファンクションでは要素を指定して値を取得することになる
 
     // コントラクト内からのアクセスとコントラクト外からのアクセス方法
+    function access(uint newNum) public returns (uint) {
          // Internal Access(State Variables Access)
+         num = newNum;
          // external Access（Getter Function Access）
+         return this.num();
+    }
 
     // 全要素を返したい場合は、Getterファンクションではなく明示的にファンクション作成すれば返せる
 
 }
 
 contract A {
-
+    function f() public returns (uint) {
+        GetterFunction gf = new GetterFunction();
+        return gf.num();
+    }
 }
