@@ -10,6 +10,7 @@ contract GetterFunction {
     /** 
      * @dev 状態変数は、宣言時に初期化できる
      */
+    uint public num = 8;
 
     // Getterファンクションでは要素を指定して値を取得することになる
 
