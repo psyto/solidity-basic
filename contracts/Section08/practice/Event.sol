@@ -50,20 +50,29 @@ contract Event {
         // 0000000000000000000000000000000000000000000000000000000000000014 <- u2_の値 20
         // 0000000000000000000000000000000000000000000000000000000000000005
         // 686f676532000000000000000000000000000000000000000000000000000000 <- s2_の値 hoge2
-        
+
         emit Log(msg.sender, s1_, s2_, u1_, u2_);
     }
 
-
-
+    function eventHash() public pure returns (bytes32) {
         // topics[0] はイベントのシグネチャのハッシュ
         // イベント宣言文字列をフラット化した keccak256 ハッシュで、この例では Log(address,string,string,uint256,uint256)
+        return keccak256("Log(address,string,string,uint256,uint256)");
+    }
 
+    function stringHash(string memory s1_) public pure returns (bytes32) {
         // indexedを参照型に対して指定すると、 その値のKeccak-256ハッシュが代わりにtopicとして保存される。
+        return keccak256(bytes(s1_));
+    } 
 
+    function nonIndexedHash(string memory s2_, uint u2_) public pure returns (bytes memory) {
         // 例） 以下に、 hoge2,20 を指定した場合の出力を貼り付けて、上記LogF()内の
         // 「インデックス付けされていないトピック」と比較してみてください。
         // 
         // 
+        return abi.encode(s2_, u2_);
+    }
+
+
 
 }
