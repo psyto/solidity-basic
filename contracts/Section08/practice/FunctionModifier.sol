@@ -32,13 +32,21 @@ contract FunctionModifier {
 /**
  * @dev modifierは継承して上書き定義可能
  */
-// contract Modifiers {
-//     /// @dev ETH(msg.value)を指定しているかチェック
-
-//     }
-// }
+contract Modifiers {
+    /// @dev ETH(msg.value)を指定しているかチェック
+    modifier checkValue(uint value_) {
+        require(value_ > 0, "Specify ETH greater than 0");
+        _;
+    }
+}
 
 // modifierも継承できる
-// contract A is Modifiers{
+contract A is Modifiers{
+    uint public num;
 
-// }
+    function changeNum(uint newNum) public payable checkValue(msg.value) returns (uint) {
+        num = newNum;
+        return num;
+    }
+
+}
