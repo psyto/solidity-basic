@@ -34,7 +34,7 @@ contract FunctionModifier {
  */
 contract Modifiers {
     /// @dev ETH(msg.value)を指定しているかチェック
-    modifier checkValue(uint value_) {
+    modifier checkValue(uint value_) virtual {
         require(value_ > 0, "Specify ETH greater than 0");
         _;
     }
@@ -43,6 +43,11 @@ contract Modifiers {
 // modifierも継承できる
 contract A is Modifiers{
     uint public num;
+
+    modifier checkValue(uint value_) override {
+        require(value_ > 1 ether, "Specify ETH greater than 1 Ether");
+        _;
+    }
 
     function changeNum(uint newNum) public payable checkValue(msg.value) returns (uint) {
         num = newNum;
