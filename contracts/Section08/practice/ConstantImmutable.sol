@@ -13,6 +13,7 @@ contract ConstantImmutable {
     // これらに対応している型はstringと値型の各型(int,address..etc)
 
     /// @dev constantは初期値の指定が必要
+    string text = "TEXT";
 
     /// @dev immutableは初期値なしでもOK。しかしその場合constructorでの初期値定義が必要
     // state visibilityでGetter Functionの生成と併用可能
