@@ -28,10 +28,15 @@ pragma solidity ^0.8.17;
 
 contract Event {
     /// @dev event定義
-
+    event Log(address indexed from, string indexed s1, string s2, uint indexed u1, uint u2);
 
     /// @dev ロギングはemitで行う
-
+    function LogF(
+        string memory s1_,
+        string memory s2_,
+        uint u1_,
+        uint u2_
+    ) public {
         // Etherscanで確認
         // 例） 以下は、 hoge1,hoge2,10,20 を指定した場合の出力
         // 最大3つのインデックス付きトピック(ABIエンコード)があり、それぞれが配列の1項目
@@ -45,6 +50,10 @@ contract Event {
         // 0000000000000000000000000000000000000000000000000000000000000014 <- u2_の値 20
         // 0000000000000000000000000000000000000000000000000000000000000005
         // 686f676532000000000000000000000000000000000000000000000000000000 <- s2_の値 hoge2
+        
+        emit Log(msg.sender, s1_, s2_, u1_, u2_);
+    }
+
 
 
         // topics[0] はイベントのシグネチャのハッシュ
