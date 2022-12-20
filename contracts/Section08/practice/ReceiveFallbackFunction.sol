@@ -42,3 +42,19 @@ receive() exists?  fallback()
     receive()   fallback()
     */
 
+contract ReceiveEther {
+  string public s;
+  bytes public message;
+
+  function getBalance() external view returns (uint) {
+    return address(this).balance;
+  }
+
+  receive() external payable {
+    s = "receive";
+  }
+  fallback() external payable {
+    s = "fallback";
+    message = msg.data;
+  }
+}
