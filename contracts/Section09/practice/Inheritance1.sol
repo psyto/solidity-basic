@@ -61,10 +61,15 @@ contract Inheritance1 is A {
     }
 }
 
-
-
+contract Inheritance2 is A {
     /// @dev 状態変数の継承確認 num, Constructorで設定した状態変数確認owner, Eventの継承確認
-
+    function changeNum(uint newNum) public onlyOwner {
+        num = newNum;
+        emit ChangeNum(owner, num);
+    }
 
     /// @dev 継承時におけるOverload確認
-
+    function add(uint a, uint b, uint c) public view onlyOwner returns (uint) {
+        return a + b + c;
+    }    
+}
