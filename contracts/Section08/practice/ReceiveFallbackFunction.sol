@@ -60,10 +60,21 @@ contract ReceiveEther {
 }
 
 contract SendEther {
+  // as message.data is null and receive() exists, this calls receive().
   function send1Ether(ReceiveEther addr) 
     external payable returns (bool, bytes memory) {
       address payable receiveEther = payable(address(addr));
       (bool result, bytes memory data) = receiveEther.call{value: msg.value}("");
       return (result, data);
+  }
+
+  // as message.data exists, this calls fallback().
+  function send2Ether(ReceiveEther addr) 
+    external payable returns (bool, bytes memory, bytes memory) {
+      address payable receiveEther = payable(address(addr));
+      (bool result, bytes memory data) = receiveEther.call{value: msg.value}(
+        abi.encodeWithSignature("hogehoge()")
+      );
+      return (result, data, abi.encodeWithSignature("hogehoge()"));
   }
 }
