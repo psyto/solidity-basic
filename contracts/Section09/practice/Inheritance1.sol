@@ -42,13 +42,25 @@ contract A {
     }
 }
 
+contract Inheritance1 is A {
     /// @dev 追加状態変数定義
-
+    string public name;
 
     /// @dev 追加Event定義
-
+    event SetName(
+        address indexed from,
+        string indexed name,
+        string plang,
+        uint start
+    );
 
     /// @dev 追加Function定義    
+    function changeName(string memory newName) public {
+        name = newName;
+        emit SetName(msg.sender, name, learning, startTime);
+    }
+}
+
 
 
     /// @dev 状態変数の継承確認 num, Constructorで設定した状態変数確認owner, Eventの継承確認
