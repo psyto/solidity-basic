@@ -21,14 +21,26 @@ pragma solidity ^0.8.17;
 
 contract FunctionOverload {
 
+    function func(uint a) public pure returns (uint) {
+        return a;
+    }
 
     /// @dev 引数の型を変更してオーバーロード
+    function func(uint8 a) public pure returns (uint8 b) {
+        b = a;
+        return b;
+    }
 
     /// @dev 引数の数を増やしてオーバーロード
+    function func(uint a, uint b) public pure returns (uint) {
+        return a + b;
+    }
 
 }
 
 /// @dev 継承された関数にも適用されることを確認する
 contract A is FunctionOverload{
-
+    function func(string memory a) public pure returns (string memory) {
+        return a;
+    }
 }
