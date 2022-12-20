@@ -14,9 +14,17 @@ contract ConstantImmutable {
 
     /// @dev constantは初期値の指定が必要
     string text = "TEXT";
+    string constant feeling = "good";
 
     /// @dev immutableは初期値なしでもOK。しかしその場合constructorでの初期値定義が必要
     // state visibilityでGetter Functionの生成と併用可能
+    uint public immutable max;
+    address immutable owner;
+
+    constructor(uint max_) {
+        max = max_;
+        owner = msg.sender;
+    }
 
     // string constant name;は初期化値が設定されていないのでcompileエラーとなる
 
