@@ -19,6 +19,7 @@ contract ConstantImmutable {
     /// @dev immutableは初期値なしでもOK。しかしその場合constructorでの初期値定義が必要
     // state visibilityでGetter Functionの生成と併用可能
     uint public immutable max;
+    uint immutable min = 10;
     address immutable owner;
 
     constructor(uint max_) {
@@ -29,16 +30,36 @@ contract ConstantImmutable {
     // string constant name;は初期化値が設定されていないのでcompileエラーとなる
 
     /// @dev 状態変数の値読み出しはviewを指定
+    function getText() public view returns (string memory) {
+        return text;
+    }
 
     /// @dev constantではない状態変数の値は変更可能
+    function changeText(string memory newText) public returns (string memory) {
+        text = newText;
+        return text;
+    }
 
     /// @dev 定数の値読み出しはpureを指定
-
+    function getFeeling() public pure returns (string memory) {
+        return feeling;
+    }
 
     /// @dev constantが付いている状態変数の値は変更不可能
+    // function changeFeeling(string memory newFeeling) public returns (string memory) {
+    //     feeling = newFeeling;
+    //     return feeling;
+    // }
 
     /// @dev immutable(min)の値読み出しはpureを指定
+    function getMin() public pure returns (uint) {
+        return min;
+    }
 
     /// @dev immutable(min)の値は変更不可
+    // function changeMin(uint newMin) public returns (uint) {
+    //     min = newMin;
+    //     return min;
+    // }
 
 }
