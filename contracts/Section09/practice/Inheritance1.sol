@@ -17,20 +17,30 @@ pragma solidity ^0.8.17;
 
 contract A {
     /// @dev 状態変数定義
-
+    uint public num;
+    uint public immutable startTime = block.timestamp;
+    address public immutable owner;
+    string public constant learning = "Solidity";
 
     /// @dev Event定義
-
+    event ChangeNum(address indexed from, uint num);
 
     /// @dev Function Modifier定義
-
+    modifier onlyOwner {
+        require(owner == msg.sender, "not owner");
+        _;
+    }
 
     /// @dev Constructor定義
-
+    constructor() {
+        owner = msg.sender;
+    }
 
     /// @dev Function定義
-
-    
+    function add(uint a, uint b) public view onlyOwner returns (uint) {
+        return a + b;
+    }
+}
 
     /// @dev 追加状態変数定義
 
