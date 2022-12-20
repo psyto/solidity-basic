@@ -59,8 +59,28 @@ contract ReceiveEther {
   }
 }
 
+contract FallbackOnly {
+  string public s;
+  bytes public message;
+
+  function getBalance() external view returns (uint) {
+    return address(this).balance;
+  }
+
+  fallback() external payable {
+    s = "fallback";
+    message = msg.data;
+  }
+}
+
+contract CannotReceiveEther {
+  function getBalance() external view returns (uint) {
+    return address(this).balance;
+  }
+}
+
 contract SendEther {
-  // as message.data is null and receive() exists, this calls receive().
+  // as message.data is null and receive() exists, receive() is called.
   function send1Ether(ReceiveEther addr) 
     external payable returns (bool, bytes memory) {
       address payable receiveEther = payable(address(addr));
@@ -68,7 +88,7 @@ contract SendEther {
       return (result, data);
   }
 
-  // as message.data exists, this calls fallback().
+  // as message.data exists, fallback() is called.
   function send2Ether(ReceiveEther addr) 
     external payable returns (bool, bytes memory, bytes memory) {
       address payable receiveEther = payable(address(addr));
@@ -76,5 +96,21 @@ contract SendEther {
         abi.encodeWithSignature("hogehoge()")
       );
       return (result, data, abi.encodeWithSignature("hogehoge()"));
+  }
+
+  // as message.data is null and receive() is not implemented, fallback() is called.
+  function send3Ether(FallbackOnly addr) 
+    external payable returns (bool, bytes memory) {
+      address payable fallbackOnly = payable(address(addr));
+      (bool result, bytes memory data) = fallbackOnly.call{value: msg.value}("");
+      return (result, data);
+  }
+
+  // as message.data is null, both receive() and fallback() are not implemented, Ether cannot be received.
+  function send4Ether(CannotReceiveEther addr) 
+    external payable returns (bool, bytes memory) {
+      address payable cannotReceiveEther = payable(address(addr));
+      (bool result, bytes memory data) = cannotReceiveEther.call{value: msg.value}("");
+      return (result, data);
   }
 }
