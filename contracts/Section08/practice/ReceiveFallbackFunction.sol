@@ -58,3 +58,12 @@ contract ReceiveEther {
     message = msg.data;
   }
 }
+
+contract SendEther {
+  function send1Ether(ReceiveEther addr) 
+    external payable returns (bool, bytes memory) {
+      address payable receiveEther = payable(address(addr));
+      (bool result, bytes memory data) = receiveEther.call{value: msg.value}("");
+      return (result, data);
+  }
+}
