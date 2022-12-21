@@ -42,15 +42,17 @@ contract C is A {
 }
 
 /// @dev Dに近いコントラクトをCにする場合
-contract D is A, B, C {
-    function f() public override(A,B,C) {
+contract D is B, C {
+    function f() public override(B,C) {
         super.f();
     }
 }
 
 /// @dev Eに近いコントラクトをBにする場合
-contract E is B {
-
+// AはC, Bから継承しているため記述を省いて良い
+contract E is C, B {
+    function f() public override(C,B) {
+        super.f();
+    }    
 }
 
-// AはC, Bから継承しているため記述を省いて良い
