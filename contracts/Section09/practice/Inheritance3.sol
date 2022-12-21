@@ -21,17 +21,36 @@ pragma solidity ^0.8.17;
 
 
 contract Owner {
-    /// @dev modifierオーバーライド virturalでオーバーライドを許可
+    address public owner;
 
+    constructor() {
+        owner = msg.sender;
+    }
+
+    /// @dev modifierオーバーライド virturalでオーバーライドを許可
+    modifier limited() virtual {
+        _;
+    }
 
     /// @dev functionオーバーライド virturalでオーバーライドを許可
-
+    function f(uint a_, uint b_) public view virtual limited returns (uint) {
+        return a_ + b_;
+    }
 }
-    
-    /// @dev modifierオーバーライド overrideでオーバーライド
 
+contract Inheritance1 is Owner {
+    /// @dev modifierオーバーライド overrideでオーバーライド
+    modifier limited() override {
+        require(owner == msg.sender, "only owner");
+        _;
+    }
 
     /// @dev functionオーバーライド modifierもオーバーライドされている
+    function f(uint a_, uint b_) public view override limited returns (uint) {
+        return a_ * b_;
+    }
+}
+
 
 
     /// @dev virturalとoverride両方指定可能
