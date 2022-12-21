@@ -53,10 +53,17 @@ contract Inheritance1 is Owner {
 
 contract Inheritance2 is Owner {
     /// @dev virturalとoverride両方指定可能
+    function f(uint a_, uint b_) public view virtual override limited returns (uint) {
+        return a_ - b_;
+    }
 }
 
 contract Inheritance3 is Inheritance2 {
     /// @dev superでInferitance2コントラクトのf()を実行
+    function f(uint a_, uint b_) public view override limited returns (uint) {
+        require(a_ > b_, "a must be a number greater than b");
+        return super.f(a_, b_);
+    }
 }
 
 
