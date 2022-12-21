@@ -51,10 +51,16 @@ contract Inheritance1 is Owner {
     }
 }
 
-
-
+contract Inheritance2 is Owner {
     /// @dev virturalとoverride両方指定可能
+}
 
-
+contract Inheritance3 is Inheritance2 {
     /// @dev superでInferitance2コントラクトのf()を実行
+}
+
+
+
+
+
 
