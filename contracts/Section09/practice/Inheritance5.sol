@@ -40,6 +40,11 @@ contract C is A {
 }
 
 /// @dev Dに近いコントラクトをCにする場合
+contract D is A, B, C {
+    function f() public override(A,B) {
+        super.f();
+    }
+}
 
 /// @dev Eに近いコントラクトをBにする場合
 // AはC, Bから継承しているため記述を省いて良い
