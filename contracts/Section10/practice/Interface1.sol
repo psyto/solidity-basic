@@ -38,12 +38,26 @@ pragma solidity ^0.8.17;
  * - abstract contractは他のcontractやabstract contractを継承できるが、interfaceはcontractを継承できない。
  */
 
+interface IAddSubCalc {
     // ファンクションヘッダーのみ({}内の実装定義不可)の定義
+    function add(uint a_, uint b_) external pure returns (uint);
+    function sub(uint a_, uint b_) external pure returns (uint);
+}
 
     // ファンクションヘッダーのみ({}内の実装定義不可)の定義
 
 /// @dev 継承するcontractは、interfaceで定義された関数をすべて実装しなければならない
-
+contract A is IAddSubCalc {
     /// @dev external -> publicに変更可能
-
+    function add(uint a_, uint b_) public pure returns (uint) {
+        return a_ + b_;
+    }
     // 1つでも未実装にするとcompileエラー。以下コメントアウトしてみると確認できる
+    function sub(uint a_, uint b_) public pure returns (uint) {
+        return a_ - b_;
+    }
+}
+
+
+
+
