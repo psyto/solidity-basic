@@ -44,20 +44,30 @@ interface IAddSubCalc {
     function sub(uint a_, uint b_) external pure returns (uint);
 }
 
+interface ISimpleCalc is IAddSubCalc {
     // ファンクションヘッダーのみ({}内の実装定義不可)の定義
+    function mul(uint a_, uint b_) external pure returns (uint);
+    function div(uint a_, uint b_) external pure returns (uint);
+}
 
 /// @dev 継承するcontractは、interfaceで定義された関数をすべて実装しなければならない
-contract A is IAddSubCalc {
+contract A is ISimpleCalc {
     /// @dev external -> publicに変更可能
     function add(uint a_, uint b_) public pure returns (uint) {
         return a_ + b_;
     }
     // 1つでも未実装にするとcompileエラー。以下コメントアウトしてみると確認できる
     function sub(uint a_, uint b_) public pure returns (uint) {
+        require(a_ >= b_, "a_ >= b_");
         return a_ - b_;
     }
+
+    function mul(uint a_, uint b_) public pure returns (uint) {
+        return a_ * b_;
+    }
+
+    function div(uint a_, uint b_) public pure returns (uint) {
+        require(b_ > 0, "b_ > 0");
+        return a_ / b_;
+    }
 }
-
-
-
-
