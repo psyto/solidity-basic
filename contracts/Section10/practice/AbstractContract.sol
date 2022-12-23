@@ -33,14 +33,28 @@ abstract contract AbstractAddSub {
    }
 
    // ファンクション実行内容が未定義でも定義可能
-   function setNum(uint a_) public virtual returns (uint);
+   function setNum(uint num_) public virtual returns (uint);
    function sub(uint a_) public view virtual returns (uint);
 }
 
+contract A is AbstractAddSub {
+   constructor(uint num_) AbstractAddSub(num_) {}
+   // 継承先でファンクション実行内容の定義が可能
+   function setNum(uint num_) public override returns (uint) {
+      num = num_;
+      return num;
+   }
+   function sub(uint a_) public view override returns (uint) {
+      require(a_ >= num, "a_ >= num");
+      return a_ - num;
+   }
 
+   // 追加ファンクション定義が可能
+   function mul(uint a_) public view returns (uint) {
+      return a_ * num;
+   }
 
-    // 継承先でファンクション実行内容の定義が可能
+}
 
-    // 追加ファンクション定義が可能
 
 
