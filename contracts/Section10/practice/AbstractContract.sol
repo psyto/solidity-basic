@@ -18,14 +18,25 @@ pragma solidity ^0.8.17;
  * - abstract contractは他のcontractやabstract contractを継承できるが、interfaceはcontractを継承できない。
  */
 
+abstract contract AbstractAddSub {
+   // 状態変数定義が可能
+   uint public num;
 
-    // 状態変数定義が可能
+   // constructor定義が可能
+   constructor(uint num_) {
+      num = num_;
+   }
 
-    // constructor定義が可能
+   // ファンクションと実行内容定義が可能
+   function add(uint a_) public view returns (uint) {
+      return a_ + num;
+   }
 
-    // ファンクションと実行内容定義が可能
+   // ファンクション実行内容が未定義でも定義可能
+   function setNum(uint a_) public virtual returns (uint);
+   function sub(uint a_) public view virtual returns (uint);
+}
 
-    // ファンクション実行内容が未定義でも定義可能
 
 
     // 継承先でファンクション実行内容の定義が可能
